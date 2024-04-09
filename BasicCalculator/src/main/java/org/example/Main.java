@@ -20,14 +20,16 @@ public class Main {
         String operatorChosen = scanner.nextLine();
         System.out.println("");
 
-        if (operatorChosen.equalsIgnoreCase("A")){
+        if (operatorChosen.equalsIgnoreCase("A") || operatorChosen.equalsIgnoreCase("Add")){
             System.out.println(firstNumber + " + " + secondNumber + " = " + (firstNumber + secondNumber));
-        } else if (operatorChosen.equalsIgnoreCase("S")) {
+        } else if (operatorChosen.equalsIgnoreCase("S") || operatorChosen.equalsIgnoreCase("Subtract")){
             System.out.println(firstNumber + " - " + secondNumber + " = " + (firstNumber - secondNumber));
-        } else if (operatorChosen.equalsIgnoreCase("M")) {
+        } else if (operatorChosen.equalsIgnoreCase("M") || operatorChosen.equalsIgnoreCase("Multiply")) {
             System.out.println(firstNumber + " * " + secondNumber + " = " + (firstNumber * secondNumber));
-        } else if (operatorChosen.equalsIgnoreCase("D")) {
+        } else if (operatorChosen.equalsIgnoreCase("D") || operatorChosen.equalsIgnoreCase("Divide")) {
             System.out.println(firstNumber + " / " + secondNumber + " = " + (firstNumber / secondNumber));
+        }else{
+            System.out.println("Please Try Again!");
         }
 
     }
