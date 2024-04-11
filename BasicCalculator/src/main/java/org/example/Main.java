@@ -21,17 +21,37 @@ public class Main {
         System.out.println("");
 
         if (operatorChosen.equalsIgnoreCase("A") || operatorChosen.equalsIgnoreCase("Add")){
-            System.out.println(firstNumber + " + " + secondNumber + " = " + (firstNumber + secondNumber));
+            System.out.println(firstNumber + " + " + secondNumber + " = " + addTwoNumbers(firstNumber, secondNumber));
         } else if (operatorChosen.equalsIgnoreCase("S") || operatorChosen.equalsIgnoreCase("Subtract")){
-            System.out.println(firstNumber + " - " + secondNumber + " = " + (firstNumber - secondNumber));
+            System.out.println(firstNumber + " - " + secondNumber + " = " + subTwoNumbers(firstNumber, secondNumber));
         } else if (operatorChosen.equalsIgnoreCase("M") || operatorChosen.equalsIgnoreCase("Multiply")) {
-            System.out.println(firstNumber + " * " + secondNumber + " = " + (firstNumber * secondNumber));
+            System.out.println(firstNumber + " * " + secondNumber + " = " + multTwoNumbers(firstNumber, secondNumber));
         } else if (operatorChosen.equalsIgnoreCase("D") || operatorChosen.equalsIgnoreCase("Divide")) {
-            System.out.println(firstNumber + " / " + secondNumber + " = " + (firstNumber / secondNumber));
+            System.out.println(firstNumber + " / " + secondNumber + " = " + divTwoNumbers(firstNumber, secondNumber));
         }else{
             System.out.println("Please Try Again!");
         }
         //add
 
+    }
+
+    public static float addTwoNumbers(float firstNumber, float secondNumber){
+        float sum = firstNumber + secondNumber;
+        return sum;
+    }
+
+    public static float subTwoNumbers(float firstNumber, float secondNumber){
+        float sum = firstNumber - secondNumber;
+        return sum;
+    }
+
+    public static float multTwoNumbers(float firstNumber, float secondNumber){
+        float sum = firstNumber * secondNumber;
+        return sum;
+    }
+
+    public static float divTwoNumbers(float firstNumber, float secondNumber){
+        float sum = firstNumber / secondNumber;
+        return sum;
     }
 }
