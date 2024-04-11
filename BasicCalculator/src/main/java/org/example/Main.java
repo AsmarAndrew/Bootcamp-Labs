@@ -8,7 +8,7 @@ public class Main {
 
         System.out.print("Enter the first number: ");
         float firstNumber = scanner.nextFloat();
-        scanner.nextLine();
+
 
         System.out.print("Enter the second number: ");
         float secondNumber = scanner.nextFloat();
