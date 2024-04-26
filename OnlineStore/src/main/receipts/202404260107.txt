@@ -1,0 +1,9 @@
+==================================================
+Today's Date: Fri, Apr 26, 2024 01:07
+GM1075|Battleship Board Game|12.99|Games
+GM1032|Telestrations Board Game|17.99|Games
+==================================================
+Sales Total $30.979999999999993
+Amount payed $33.0
+Change Given $2.02
+==================================================
