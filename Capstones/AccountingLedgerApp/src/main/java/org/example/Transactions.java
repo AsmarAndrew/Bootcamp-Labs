@@ -1,5 +1,6 @@
 package org.example;
 
+//Transaction Class holding all info within Transactions.
 
 public class Transactions {
     private String date;
@@ -56,6 +57,8 @@ public class Transactions {
         this.price = price;
     }
 
+    //This will organize the date to an easier way to compare dates using long.
+    //Example if the date was 2024-03-04 it'll transfer it to 20240304, removing all the "-" and making it a long variable.
     public long fixedDate(){
 
             String[] timeInput = getTime().split(":");

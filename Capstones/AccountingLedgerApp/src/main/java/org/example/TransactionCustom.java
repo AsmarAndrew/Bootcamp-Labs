@@ -1,5 +1,7 @@
 package org.example;
 
+//Class just for custom search.
+
 public class TransactionCustom {
     private long dateMin;
     private long dateMax;

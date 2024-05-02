@@ -14,6 +14,7 @@ public class TransactionHandler {
     DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
+    //This method will be called if transaction.csv needs to be read again, usually when it's updated.
     public void transactionReader(List<Transactions> transaction){
         try(BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/transactions.csv"))) {
             transaction.clear();
@@ -35,7 +36,9 @@ public class TransactionHandler {
         }
     }
 
+    //This method adds the user's deposit
     public void addDeposit(List<Transactions> transactions){
+
 
         LocalDateTime today = LocalDateTime.now();
 
@@ -49,33 +52,39 @@ public class TransactionHandler {
         double amount = 0;
 
 
-
+        //This if statement will check if either are blank it'll tell the user to try again.
         if (!vendor.isBlank() || !description.isBlank() || !amountString.isBlank()){
 
+            //Reason for the try catch is because if the user entered a char instead of a number it would throw an error. So this prevents it.
             try {
-                amount = Math.abs(Double.parseDouble(amountString));
+                amount = Math.abs(Double.parseDouble(amountString));//Math.abs would make sure it's only a positive number.
             }catch (NumberFormatException ex){
                 System.out.println("\n!! Please enter a valid number and try again !!");
-                addDeposit(transactions);
+                addDeposit(transactions); //Will loop back the method
             }
 
+            //This try catch is writing the users input into the transaction.csv file.
             try(BufferedWriter writer = new BufferedWriter(new FileWriter(transactionFile,true))){
                 writer.write(today.format(dateFormatter) +  "|"  + today.format(timeFormatter) +  "|" + description + "|" + vendor + "|" + amount);
                 writer.newLine();
             }catch (IOException ex){
                 System.out.println("Whoops couldn't find right file.");
             }
-
+            //This method is called to update the Reader live to the user.
             transactionReader(transactions);
-
         }
         else {
             System.out.println("\n!!! One of your entries was left empty. Please try again. !!!\n");
             addDeposit(transactions);
         }
+
+
     }
 
+    //This method adds the user's payment
     public void makePayment(List<Transactions> transactions){
+
+        //Make Payment is very similar concept to add Deposit.
 
         LocalDateTime today = LocalDateTime.now();
 
@@ -91,7 +100,10 @@ public class TransactionHandler {
         if (!vendor.isBlank() || !description.isBlank() || !amountString.isBlank()){
 
             try {
-                amount = -(Double.parseDouble(amountString));
+                if (amountString.startsWith("-")){ //This if statement will check if user did enter -
+                    amountString = amountString.replace("-",""); //If they did it'll be blanked out
+                }
+                amount = -(Double.parseDouble(amountString)); //Reason for if statement is if the user doesn't enter one it'll still run a negative value.
             }catch (NumberFormatException ex){
                 System.out.println("\n!! Please enter a valid number and try again !!");
                 addDeposit(transactions);
@@ -112,21 +124,25 @@ public class TransactionHandler {
             addDeposit(transactions);
         }
 
+
+
     }
 
+    //This method runs all the transactions.
     public void allDisplay(List<Transactions> transactions){
+
         Screens screens = new Screens();
-        System.out.println("=============================================");
-        System.out.println("                 Transactions                ");
-        System.out.println("=============================================");
+        footer("Transactions");
         int i = 0;
         int page = 1;
         int transcation = 1;
-        String answer;
-        transactions.sort(Comparator.comparingLong(Transactions::fixedDate));
+        String answer = "";
+
+        transactions.sort(Comparator.comparingLong(Transactions::fixedDate));//Using this will sort using the fixedDates.
+
         for (Transactions display : transactions){
 
-            int pages = (int)Math.ceil((double) transactions.size() /10);
+            int pages = (int)Math.ceil((double) transactions.size() /10); //This will tell you how many
 
             if (i == 10){
                 System.out.println("This is Page " + page + " out of " + pages);
@@ -138,12 +154,7 @@ public class TransactionHandler {
                         i = 0;
                     }
                     if (answer.equalsIgnoreCase("no")){
-                        System.out.println("=============================================");
-                        System.out.println("            End of Transactions              ");
-                        System.out.println("=============================================");
-                        screens.returningMessage("Returning back to Ledger Screen");
-                        screens.LegerScreen();
-
+                        endFooter("Transactions");
                     }
 
                     if (!answer.equalsIgnoreCase("yes") && !answer.equalsIgnoreCase("no")) {
@@ -152,25 +163,23 @@ public class TransactionHandler {
                 } while (!answer.equalsIgnoreCase("yes") && !answer.equalsIgnoreCase("no"));
             }
             i++;
-            System.out.println(transcation + ": Date: " + display.getDate() + " Time: "
-                    + display.getTime() + " Description: " + display.getDescription()
-                    + " Vendor: " + display.getVendor() + " Price: $" + display.getPrice());
-            transcation++;
+            if (!answer.equalsIgnoreCase("no")) {
+                System.out.println(transcation + ": Date: " + display.getDate() + " Time: "
+                        + display.getTime() + " Description: " + display.getDescription()
+                        + " Vendor: " + display.getVendor() + " Price: $" + display.getPrice());
+                transcation++;
+            }else {
+                return;
+            }
         }
-        System.out.println("=============================================");
-        System.out.println("            End of Transactions              ");
-        System.out.println("=============================================");
-
-
-
+        endFooter("Transactions");
 
     }
 
+    //This method will only show deposits.
     public void depositDisplay(List<Transactions> transactions){
 
-        System.out.println("=============================================");
-        System.out.println("             Deposits Made                    ");
-        System.out.println("=============================================");
+        footer("Deposit Made");
 
         transactions.sort(Comparator.comparingLong(Transactions::fixedDate));
         for (Transactions display : transactions){
@@ -180,18 +189,14 @@ public class TransactionHandler {
                         + " Vendor: " + display.getVendor() + " Price: " + display.getPrice());
             }
         }
-
-        System.out.println("=============================================");
-        System.out.println("            End of Deposits                   ");
-        System.out.println("=============================================");
+        endFooter("Deposits");
 
     }
 
+    //This method will only show payments.
     public void paymentDisplay(List<Transactions> transactions) {
 
-        System.out.println("=============================================");
-        System.out.println("             Payments Made                    ");
-        System.out.println("=============================================");
+        footer("Payments Made");
 
 
         transactions.sort(Comparator.comparingLong(Transactions::fixedDate));
@@ -203,10 +208,22 @@ public class TransactionHandler {
             }
         }
 
-        System.out.println("=============================================");
-        System.out.println("            End of Payments                   ");
-        System.out.println("=============================================");
+        endFooter("Payments");
 
+    }
+
+
+    //Both are footers
+    public void endFooter(String endOf){
+        System.out.println("=============================================");
+        System.out.println("            End of " + endOf);
+        System.out.println("=============================================");
+    }
+
+    public void footer(String type){
+        System.out.println("=============================================");
+        System.out.println("             "+type);
+        System.out.println("=============================================");
     }
 
 }

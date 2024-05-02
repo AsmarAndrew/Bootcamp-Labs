@@ -8,9 +8,7 @@ public class ReportHandler {
 
     public void monthToMonth(List<Transactions> transactions) {
 
-        System.out.println("=============================================");
-        System.out.println("        Month to Date Transactions           ");
-        System.out.println("=============================================");
+        footer("Month to Date Transactions");
 
         transactions.sort(Comparator.comparingLong(Transactions::fixedDate));
         for (Transactions display : transactions) {
@@ -19,24 +17,20 @@ public class ReportHandler {
             int month = Integer.parseInt(dateInput[1]);
             int year = Integer.parseInt(dateInput[0]);
 
-            if (today.getMonthValue() == month && today.getYear() == year)
+            if (today.getMonthValue() == month && today.getYear() == year) //This will check if the month and year equals today if not doesn't print
                 System.out.println("Date: " + display.getDate() + " Time: "
                         + display.getTime() + " Description: " + display.getDescription()
                         + " Vendor: " + display.getVendor() + " Price: " + display.getPrice());
         }
 
-        System.out.println("=============================================");
-        System.out.println("             End of Report                   ");
-        System.out.println("=============================================");
+        endFooter("Report");
+
 
 
     }
 
     public void previousMonth(List<Transactions> transactions) {
-
-        System.out.println("=============================================");
-        System.out.println("            Previous Month Transactions      ");
-        System.out.println("=============================================");
+        footer("Previous Month Transactions");
 
 
         transactions.sort(Comparator.comparingLong(Transactions::fixedDate));
@@ -49,7 +43,7 @@ public class ReportHandler {
 
             int prevMonth = today.getMonthValue() - 1;
             int prevYear = today.getYear();
-            if (month == 12) {
+            if (month == 12) { //This is just a precaution if the month is january.
                 prevYear = prevYear - 1;
             }
 
@@ -61,19 +55,14 @@ public class ReportHandler {
                         + " Vendor: " + display.getVendor() + " Price: " + display.getPrice());
         }
 
-        System.out.println("=============================================");
-        System.out.println("             End of Report                   ");
-        System.out.println("=============================================");
+        endFooter("Report");
 
 
 
     }
 
     public void yearToDate(List<Transactions> transactions) {
-
-        System.out.println("=============================================");
-        System.out.println("          Year to Date Transactions          ");
-        System.out.println("=============================================");
+        footer("Year to Date Transactions");
 
         transactions.sort(Comparator.comparingLong(Transactions::fixedDate));
         for (Transactions display : transactions) {
@@ -87,18 +76,14 @@ public class ReportHandler {
                         + " Vendor: " + display.getVendor() + " Price: " + display.getPrice());
         }
 
-        System.out.println("=============================================");
-        System.out.println("             End of Report                   ");
-        System.out.println("=============================================");
+        endFooter("Report");
 
 
     }
 
     public void previousYear(List<Transactions> transactions) {
+        footer("Previous Year Transactions");
 
-        System.out.println("=============================================");
-        System.out.println("         Previous Year Transactions          ");
-        System.out.println("=============================================");
 
 
         transactions.sort(Comparator.comparingLong(Transactions::fixedDate));
@@ -116,17 +101,13 @@ public class ReportHandler {
                         + " Vendor: " + display.getVendor() + " Price: " + display.getPrice());
         }
 
-        System.out.println("=============================================");
-        System.out.println("             End of Report                   ");
-        System.out.println("=============================================");
+        endFooter("Report");
 
 
     }
 
     public void searchVendor(List<Transactions> transactions, Scanner scanner) {
-        System.out.println("=============================================");
-        System.out.println("             Searching Vendor                ");
-        System.out.println("=============================================");
+        footer("Searching Vendor");
 
         transactions.sort(Comparator.comparingLong(Transactions::fixedDate));
         System.out.println("Which Vendor would you like to search up?");
@@ -140,19 +121,18 @@ public class ReportHandler {
             }
         }
 
-        System.out.println("=============================================");
-        System.out.println("             End of Report                   ");
-        System.out.println("=============================================");
+        endFooter("Report");
     }
 
     public void customerSearch(List<Transactions> transactions, Scanner scanner) {
 
+        //This is the fun part
+        //Made a new class for custom transcation.
+
         TransactionCustom transactionCustom = new TransactionCustom();
 
         transactions.sort(Comparator.comparingLong(Transactions::fixedDate));
-        System.out.println("=============================================");
-        System.out.println("             Custom Search                   ");
-        System.out.println("=============================================");
+        footer("Custom Search");
         System.out.println("Enter Start Date (YYYY-MM-DD):");
         String startDate = scanner.nextLine();
         System.out.println("Enter End Date (YYYY-MM-DD):");
@@ -167,6 +147,8 @@ public class ReportHandler {
         String maxAmount = scanner.nextLine();
 
 
+        //After collecting everything I'm checking whether the user input something blank or even something valid.
+        //Cuz if it's empty it'll be set to nothing.
         if (!startDate.isEmpty()){
             try {
                 transactionCustom.setDateMin(Long.parseLong(startDate.replaceAll("-", "")));
@@ -210,15 +192,16 @@ public class ReportHandler {
             }
 
         }
-
-        System.out.println("=============================================");
-        System.out.println("             Custom Search Results            ");
-        System.out.println("=============================================");
+        footer("Custom Search Results");
 
         for (Transactions display : transactions) {
 
-            long date = Long.parseLong(display.getDate().replaceAll("-", ""));
+            long date = Long.parseLong(display.getDate().replaceAll("-", "")); //Getting date of the for loop display
 
+
+            //A whole if statement deciding what to print ;-;
+            //Like bruh.
+            //Prob easier or different way, but, yeah.
 
             if (transactionCustom.getMinPrice() <= display.getPrice() && transactionCustom.getMaxPrice() >= display.getPrice() &&
                     (transactionCustom.getDescription().isEmpty() || transactionCustom.getDescription().equalsIgnoreCase(display.getDescription())) &&
@@ -230,11 +213,21 @@ public class ReportHandler {
             }
         }
 
-        System.out.println("=============================================");
-        System.out.println("             End of Transactions             ");
-        System.out.println("=============================================");
+        endFooter("Results");
 
 
+    }
+
+    public void endFooter(String endOf){
+        System.out.println("=============================================");
+        System.out.println("            End of " + endOf);
+        System.out.println("=============================================");
+    }
+
+    public void footer(String type){
+        System.out.println("=============================================");
+        System.out.println("             "+type);
+        System.out.println("=============================================");
     }
 }
 
