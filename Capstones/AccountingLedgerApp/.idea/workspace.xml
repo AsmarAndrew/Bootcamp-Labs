@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b8113d9-c4d0-4d07-8500-94ecfa20c697" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ReportHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ReportHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Screens.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Screens.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TransactionCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TransactionCustom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TransactionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TransactionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Transactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Transactions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/transactions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/transactions.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
