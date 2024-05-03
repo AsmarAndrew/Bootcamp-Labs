@@ -59,8 +59,9 @@ public class TransactionHandler {
             try {
                 amount = Math.abs(Double.parseDouble(amountString));//Math.abs would make sure it's only a positive number.
             }catch (NumberFormatException ex){
-                System.out.println("\n!! Please enter a valid number and try again !!");
+                System.out.println("\n\u001B[31m!! Please enter a valid number and try again !!\u001B[0m");
                 addDeposit(transactions); //Will loop back the method
+                return;
             }
 
             //This try catch is writing the users input into the transaction.csv file.
@@ -74,11 +75,10 @@ public class TransactionHandler {
             transactionReader(transactions);
         }
         else {
-            System.out.println("\n!!! One of your entries was left empty. Please try again. !!!\n");
+            System.out.println("\n\u001B[31m!!! One of your entries was left empty. Please try again. !!!\u001B[0m");
             addDeposit(transactions);
+            return;
         }
-
-
     }
 
     //This method adds the user's payment
@@ -105,8 +105,9 @@ public class TransactionHandler {
                 }
                 amount = -(Double.parseDouble(amountString)); //Reason for if statement is if the user doesn't enter one it'll still run a negative value.
             }catch (NumberFormatException ex){
-                System.out.println("\n!! Please enter a valid number and try again !!");
+                System.out.println("\n\u001B[31m!! Please enter a valid number and try again !!\u001B[0m");
                 addDeposit(transactions);
+                return;
             }
 
             try(BufferedWriter writer = new BufferedWriter(new FileWriter(transactionFile,true))){
@@ -120,8 +121,9 @@ public class TransactionHandler {
 
         }
         else {
-            System.out.println("\n!!! One of your entries was left empty. Please try again. !!!\n");
+            System.out.println("\n\u001B[31m!!! One of your entries was left empty. Please try again. !!!\u001B[0m");
             addDeposit(transactions);
+            return;
         }
 
 
@@ -131,7 +133,6 @@ public class TransactionHandler {
     //This method runs all the transactions.
     public void allDisplay(List<Transactions> transactions){
 
-        Screens screens = new Screens();
         footer("Transactions");
         int i = 0;
         int page = 1;
