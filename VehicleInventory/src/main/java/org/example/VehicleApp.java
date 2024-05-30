@@ -101,4 +101,6 @@ public class VehicleApp {
 
         return new Vehicle(vehicleId, makeModel, color, odometerReading, price);
     }
+
+    
 }
