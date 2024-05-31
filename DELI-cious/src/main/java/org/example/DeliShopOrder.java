@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class DeliShopOrder {
 
-    //initializing
+    // Initializing
     private Scanner scanner = new Scanner(System.in);
     private SandwichBuilder.Builder sandwichBuilder = new SandwichBuilder.Builder();
     private SidesBuilder.Builder sidesBuilder = new SidesBuilder.Builder();
@@ -14,11 +14,7 @@ public class DeliShopOrder {
     private boolean hasDrink = false;
     private boolean hasChips = false;
 
-    /*
-
-    First 5 Methods are for Handling The UserInterface
-
-     */
+    // First 5 Methods are for Handling The UserInterface
 
     public void addSandwich() {
         sandwichBuilder.setBread(selectBread());
@@ -46,13 +42,13 @@ public class DeliShopOrder {
 
     public void checkout() {
         if (!hasSandwich && !hasDrink && !hasChips) {
-            System.out.println("You must add at least a sandwich, drink, or chips to your order.");
+            System.out.println("\n\nYou must add at least a sandwich, drink, or chips to your order.");
             return;
         }
 
         while (true) {
             displayOrder();
-            System.out.println("Do you want to remove anything? (yes/no)");
+            System.out.println("\nDo you want to remove anything? (yes/no)");
             String choice = scanner.next();
             if (choice.equalsIgnoreCase("yes")) {
                 removeItem();
@@ -73,135 +69,235 @@ public class DeliShopOrder {
         hasSandwich = false;
         hasDrink = false;
         hasChips = false;
-        System.out.println("Order Canceled");
+        System.out.println("\nOrder Canceled");
     }
 
-    /*
-
-    Here is all the helper methods for the Methods above.
-
-     */
+    // Helper methods for the Methods above.
 
     private int selectSize() {
-        System.out.println("Select Size:");
-        System.out.println("1) 4 inch");
-        System.out.println("2) 8 inch");
-        System.out.println("3) 12 inch");
-        int choice = scanner.nextInt();
+        int choice = -1;
+        while (choice < 1 || choice > 3) {
+            System.out.println("\n\nSelect Size:");
+            System.out.println("1) 4 inch");
+            System.out.println("2) 8 inch");
+            System.out.println("3) 12 inch");
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+            } else {
+                scanner.next();
+                choice = -1;
+            }
+        }
         return choice * 4;
     }
 
     private Inventory.bread selectBread() {
-        System.out.println("Select Bread:");
-        for (Inventory.bread bread : Inventory.bread.values()) {
-            System.out.println(bread.ordinal() + 1 + ") " + bread);
+        int choice = -1;
+        while (choice < 1 || choice > Inventory.bread.values().length) {
+            System.out.println("\n\nSelect Bread:");
+            for (Inventory.bread bread : Inventory.bread.values()) {
+                System.out.println(bread.ordinal() + 1 + ") " + bread);
+            }
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+            } else {
+                scanner.next();
+                choice = -1;
+            }
         }
-        int choice = scanner.nextInt();
         return Inventory.bread.values()[choice - 1];
     }
 
     private boolean isToasted() {
-        System.out.println("Do you want your sandwich toasted? (yes/no)");
-        String choice = scanner.next();
-        return choice.equalsIgnoreCase("yes");
+        System.out.println("\n\nDo you want your sandwich toasted? (yes/no)");
+        while (true) {
+            String choice = scanner.next();
+            if (choice.equalsIgnoreCase("yes")) {
+                return true;
+            } else if (choice.equalsIgnoreCase("no")) {
+                return false;
+            } else {
+                System.out.println("\nInvalid input. Please enter 'yes' or 'no'.");
+            }
+        }
     }
 
     private void addMeats() {
-        System.out.println("Select Meats (enter 0 to finish):");
         while (true) {
+            System.out.println("\n\nSelect Meats:");
             Inventory.meats meat = selectMeat();
-            if (meat == null) break;
-            sandwichBuilder.addMeat(meat);
+            if (meat != null) {
+                sandwichBuilder.addMeat(meat);
+                System.out.println("\nDo you want to add more meats? (yes/no)");
+                String choice = scanner.next();
+                if (!choice.equalsIgnoreCase("yes")) {
+                    break;
+                }
+            }
         }
     }
 
     private Inventory.meats selectMeat() {
-        for (Inventory.meats meat : Inventory.meats.values()) {
-            System.out.println(meat.ordinal() + 1 + ") " + meat);
+        int choice = -1;
+        while (choice < 0 || choice > Inventory.meats.values().length) {
+            for (Inventory.meats meat : Inventory.meats.values()) {
+                System.out.println(meat.ordinal() + 1 + ") " + meat);
+            }
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                if (choice == 0) return null;
+            } else {
+                scanner.next();
+                choice = -1;
+            }
         }
-        int choice = scanner.nextInt();
-        if (choice == 0) return null;
         return Inventory.meats.values()[choice - 1];
     }
 
     private void addCheese() {
-        System.out.println("Select Cheese (enter 0 to finish):");
         while (true) {
+            System.out.println("\n\nSelect Cheese:");
             Inventory.cheese cheese = selectCheese();
-            if (cheese == null) break;
-            sandwichBuilder.addCheese(cheese);
+            if (cheese != null) {
+                sandwichBuilder.addCheese(cheese);
+                System.out.println("\nDo you want to add more cheese? (yes/no)");
+                String choice = scanner.next();
+                if (!choice.equalsIgnoreCase("yes")) {
+                    break;
+                }
+            }
         }
     }
 
     private Inventory.cheese selectCheese() {
-        for (Inventory.cheese cheese : Inventory.cheese.values()) {
-            System.out.println(cheese.ordinal() + 1 + ") " + cheese);
+        int choice = -1;
+        while (choice < 0 || choice > Inventory.cheese.values().length) {
+            for (Inventory.cheese cheese : Inventory.cheese.values()) {
+                System.out.println(cheese.ordinal() + 1 + ") " + cheese);
+            }
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                if (choice == 0) return null;
+            } else {
+                scanner.next();
+                choice = -1;
+            }
         }
-        int choice = scanner.nextInt();
-        if (choice == 0) return null;
         return Inventory.cheese.values()[choice - 1];
     }
 
     private void addToppings() {
-        System.out.println("Select Toppings (enter 0 to finish):");
         while (true) {
+            System.out.println("\n\nSelect Toppings:");
             Inventory.toppings topping = selectTopping();
-            if (topping == null) break;
-            sandwichBuilder.addTopping(topping);
+            if (topping != null) {
+                sandwichBuilder.addTopping(topping);
+                System.out.println("\nDo you want to add more toppings? (yes/no)");
+                String choice = scanner.next();
+                if (!choice.equalsIgnoreCase("yes")) {
+                    break;
+                }
+            }
         }
     }
 
     private Inventory.toppings selectTopping() {
-        for (Inventory.toppings topping : Inventory.toppings.values()) {
-            System.out.println(topping.ordinal() + 1 + ") " + topping);
+        int choice = -1;
+        while (choice < 0 || choice > Inventory.toppings.values().length) {
+            for (Inventory.toppings topping : Inventory.toppings.values()) {
+                System.out.println(topping.ordinal() + 1 + ") " + topping);
+            }
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                if (choice == 0) return null;
+            } else {
+                scanner.next();
+                choice = -1;
+            }
         }
-        int choice = scanner.nextInt();
-        if (choice == 0) return null;
         return Inventory.toppings.values()[choice - 1];
     }
 
     private void addSauces() {
-        System.out.println("Select Sauces (enter 0 to finish):");
         while (true) {
+            System.out.println("\n\nSelect Sauces:");
             Inventory.sauces sauce = selectSauce();
-            if (sauce == null) break;
-            sandwichBuilder.addSauce(sauce);
+            if (sauce != null) {
+                sandwichBuilder.addSauce(sauce);
+                System.out.println("\nDo you want to add more sauces? (yes/no)");
+                String choice = scanner.next();
+                if (!choice.equalsIgnoreCase("yes")) {
+                    break;
+                }
+            }
         }
     }
 
     private Inventory.sauces selectSauce() {
-        for (Inventory.sauces sauce : Inventory.sauces.values()) {
-            System.out.println(sauce.ordinal() + 1 + ") " + sauce);
+        int choice = -1;
+        while (choice < 0 || choice > Inventory.sauces.values().length) {
+            for (Inventory.sauces sauce : Inventory.sauces.values()) {
+                System.out.println(sauce.ordinal() + 1 + ") " + sauce);
+            }
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                if (choice == 0) return null;
+            } else {
+                scanner.next();
+                choice = -1;
+            }
         }
-        int choice = scanner.nextInt();
-        if (choice == 0) return null;
         return Inventory.sauces.values()[choice - 1];
     }
 
     private Inventory.drinks selectDrink() {
-        System.out.println("Select Drink:");
-        for (Inventory.drinks drink : Inventory.drinks.values()) {
-            System.out.println(drink.ordinal() + 1 + ") " + drink);
+        int choice = -1;
+        while (choice < 1 || choice > Inventory.drinks.values().length) {
+            System.out.println("Select Drink:");
+            for (Inventory.drinks drink : Inventory.drinks.values()) {
+                System.out.println(drink.ordinal() + 1 + ") " + drink);
+            }
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+            } else {
+                scanner.next();
+                choice = -1;
+            }
         }
-        int choice = scanner.nextInt();
         return Inventory.drinks.values()[choice - 1];
     }
 
     private Inventory.drinkSize selectDrinkSize() {
-        System.out.println("Select Drink Size:");
-        for (Inventory.drinkSize size : Inventory.drinkSize.values()) {
-            System.out.println(size.ordinal() + 1 + ") " + size);
+        int choice = -1;
+        while (choice < 1 || choice > Inventory.drinkSize.values().length) {
+            System.out.println("Select Drink Size:");
+            for (Inventory.drinkSize size : Inventory.drinkSize.values()) {
+                System.out.println(size.ordinal() + 1 + ") " + size);
+            }
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+            } else {
+                scanner.next();
+                choice = -1;
+            }
         }
-        int choice = scanner.nextInt();
         return Inventory.drinkSize.values()[choice - 1];
     }
 
     private Inventory.chips selectChips() {
-        System.out.println("Select Chips:");
-        for (Inventory.chips chips : Inventory.chips.values()) {
-            System.out.println(chips.ordinal() + 1 + ") " + chips);
+        int choice = -1;
+        while (choice < 1 || choice > Inventory.chips.values().length) {
+            System.out.println("Select Chips:");
+            for (Inventory.chips chips : Inventory.chips.values()) {
+                System.out.println(chips.ordinal() + 1 + ") " + chips);
+            }
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+            } else {
+                scanner.next();
+                choice = -1;
+            }
         }
-        int choice = scanner.nextInt();
         return Inventory.chips.values()[choice - 1];
     }
 
@@ -257,38 +353,46 @@ public class DeliShopOrder {
     }
 
     private void removeItem() {
-        System.out.println("What would you like to remove?");
-        System.out.println("1) Sandwich");
-        System.out.println("2) Drink");
-        System.out.println("3) Chips");
-        int choice = scanner.nextInt();
+        int choice = -1;
+        while (choice < 1 || choice > 3) {
+            System.out.println("\n\nWhat would you like to remove?");
+            System.out.println("1) Sandwich");
+            System.out.println("2) Drink");
+            System.out.println("3) Chips");
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+            } else {
+                scanner.next();
+                choice = -1;
+            }
+        }
 
         switch (choice) {
             case 1:
                 if (hasSandwich) {
                     sandwichBuilder = new SandwichBuilder.Builder();
                     hasSandwich = false;
-                    System.out.println("Sandwich removed from your order.");
+                    System.out.println("\nSandwich removed from your order.");
                 } else {
-                    System.out.println("You don't have a sandwich in your order.");
+                    System.out.println("\nYou don't have a sandwich in your order.");
                 }
                 break;
             case 2:
                 if (hasDrink) {
                     sidesBuilder.getDrinks().clear();
                     hasDrink = false;
-                    System.out.println("Drink removed from your order.");
+                    System.out.println("\nDrink removed from your order.");
                 } else {
-                    System.out.println("You don't have a drink in your order.");
+                    System.out.println("\nYou don't have a drink in your order.");
                 }
                 break;
             case 3:
                 if (hasChips) {
                     sidesBuilder.getChips().clear();
                     hasChips = false;
-                    System.out.println("Chips removed from your order.");
+                    System.out.println("\nChips removed from your order.");
                 } else {
-                    System.out.println("You don't have chips in your order.");
+                    System.out.println("\nYou don't have chips in your order.");
                 }
                 break;
             default:

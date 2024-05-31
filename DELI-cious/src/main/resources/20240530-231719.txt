@@ -1,0 +1,27 @@
+==================================================
+Today's Date: Thu, May 30, 2024 23:17
+==================================================
+Sandwich Order Details:
+Bread: WHEAT ($8.5)
+Size: 12 inch
+Toasted: Yes
+Meats:
+- HAM: $3.0
+  Extra: $1.5
+- SALAMI: $3.0
+Cheeses:
+- CHEDDAR: $2.25
+  Extra: $0.9
+Toppings:
+- ONIONS
+- TOMATOES
+- JALAPENOS
+- JALAPENOS
+- TOMATOES
+- ONIONS
+Sauces:
+- KETCHUP
+- RANCH
+Total Sandwich Cost: $19.15
+Total Cost: $19.15
+==================================================

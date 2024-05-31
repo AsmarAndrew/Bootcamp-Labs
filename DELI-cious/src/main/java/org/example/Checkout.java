@@ -20,7 +20,7 @@ public class Checkout {
     public void generateReceipt(SandwichBuilder sandwich, SidesBuilder sides) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         LocalDateTime today = LocalDateTime.now();
-        DateTimeFormatter receiptFmt = DateTimeFormatter.ofPattern("yyyy-MMdd-HHmmss");
+        DateTimeFormatter receiptFmt = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
         String receiptDate = "src/main/resources/" + today.format(receiptFmt) + ".txt";
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("E, MMM dd, yyyy HH:mm");
         String todayDate = today.format(fmt);
