@@ -1,0 +1,26 @@
+==================================================
+Today's Date: Fri, May 31, 2024 10:52
+==================================================
+Sandwich Order Details:
+Bread: WHEAT ($8.5)
+Size: 12 inch
+Toasted: Yes
+Meats:
+- STEAK: $3.0
+  Extra: $1.5
+- CHICKEN: $3.0
+Cheeses:
+- PROVOLONE: $2.25
+Toppings:
+- LETTUCE
+- PEPPERS
+- ONIONS
+- PICKLES
+Sauces:
+- KETCHUP
+Chips:
+- BBQ x1 ($1.5)
+Total Sandwich Cost: $18.25
+Total Chips Cost: $1.5
+Total Cost: $19.75
+==================================================
