@@ -12,22 +12,28 @@ import org.yearup.models.Product;
 
 import java.util.List;
 
+/*
+The CategoriesController handles HTTP requests related to Category.
+ */
 @RestController
-@RequestMapping("/categories")
-@CrossOrigin
+@RequestMapping("/categories") //Base Url
+@CrossOrigin // Allows Cross-Origin request for Front-End
 public class CategoriesController {
 
+    //Injecting the Dao dependency
     @Autowired
     private CategoryDao categoryDao;
 
     @Autowired
     private ProductDao productDao;
 
+    //Get All Categories
     @GetMapping
     public List<Category> getAll() {
         return categoryDao.getAllCategories();
     }
 
+    //Getting category by Id
     @GetMapping("/{id}")
     public Category getById(@PathVariable int id) {
         Category category = categoryDao.getById(id);
@@ -37,18 +43,21 @@ public class CategoriesController {
         return category;
     }
 
+    //Getting all Products with a specific category Id
     @GetMapping("{categoryId}/products")
     public List<Product> getProductsById(@PathVariable int categoryId) {
         return productDao.listByCategoryId(categoryId);
     }
 
+    //Adding new Category (With Admin Role)
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasRole('ADMIN')") //This Restricts to Admin Role only, no regular users allowed >:)
+    @ResponseStatus(HttpStatus.CREATED) //This sets response status to 201 Created
     public Category addCategory(@RequestBody Category category) {
         return categoryDao.create(category);
     }
 
+    //Updating Category (With Admin Role)
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -56,6 +65,7 @@ public class CategoriesController {
         categoryDao.update(id, category);
     }
 
+    //Deleting the Category (With Admin Role)
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)

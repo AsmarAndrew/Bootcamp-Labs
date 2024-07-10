@@ -17,7 +17,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/cart")
 @Secured({"ROLE_USER"})
-@CrossOrigin // Add this annotation to enable Cross-Origin Resource Sharing
+@CrossOrigin
 public class ShoppingCartController {
     private final ShoppingCartDao shoppingCartDao;
     private final UserDao userDao;
@@ -30,6 +30,7 @@ public class ShoppingCartController {
         this.productDao = productDao;
     }
 
+    //Gets the shopping cart of the current user.
     @GetMapping
     public ShoppingCart getCart(Principal principal) {
         try {
@@ -44,6 +45,7 @@ public class ShoppingCartController {
         }
     }
 
+    //Ability to add Product to cart for the current user
     @PostMapping("/products/{productId}")
     public ShoppingCart addProductToCart(Principal principal, @PathVariable int productId) {
         try {
@@ -60,6 +62,7 @@ public class ShoppingCartController {
         }
     }
 
+    //Ability to update Product quantity when product is in the cart.
     @PutMapping("/products/{productId}")
     public ShoppingCart updateProductQuantity(Principal principal, @PathVariable int productId, @RequestBody Map<String, Integer> quantityMap) {
         try {
@@ -82,6 +85,7 @@ public class ShoppingCartController {
         }
     }
 
+    //Clearing the Cart for the current user.
     @DeleteMapping
     public ShoppingCart clearCart(Principal principal) {
         try {

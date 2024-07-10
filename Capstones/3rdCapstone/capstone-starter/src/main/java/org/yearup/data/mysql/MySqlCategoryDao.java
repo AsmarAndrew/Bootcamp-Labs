@@ -11,6 +11,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+The MySqlCategoryDao is a specific implementation of the CategoryDao interface that interacts with a MySQL database.
+It handles the actual database operations for managing Category objects.
+ */
+
 @Repository
 public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao {
 

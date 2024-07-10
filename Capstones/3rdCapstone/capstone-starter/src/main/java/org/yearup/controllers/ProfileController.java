@@ -27,9 +27,9 @@ public class ProfileController
         this.profileDao = profileDao;
         this.userDao = userDao;
     }
-
+    //Get Profile of User
     @GetMapping
-    public Profile getProfile(Principal principal)
+    public Profile getProfile(Principal principal) //Using Principal gets the info of the currently logged-in user.
     {
         try
         {
@@ -51,6 +51,7 @@ public class ProfileController
         }
     }
 
+    //Update Profile
     @PutMapping
     public Profile updateProfile(Principal principal, @RequestBody Profile updatedProfile)
     {

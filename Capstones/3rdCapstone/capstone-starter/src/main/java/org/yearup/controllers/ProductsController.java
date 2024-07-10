@@ -23,6 +23,7 @@ public class ProductsController {
         this.productDao = productDao;
     }
 
+    //Search Product
     @GetMapping("")
     @PreAuthorize("permitAll()")
     public List<Product> search(@RequestParam(name = "cat", required = false) Integer categoryId,
@@ -36,6 +37,7 @@ public class ProductsController {
         }
     }
 
+    //Search product by Product Id
     @GetMapping("{id}")
     @PreAuthorize("permitAll()")
     public Product getById(@PathVariable int id) {
@@ -51,6 +53,7 @@ public class ProductsController {
         }
     }
 
+    //Add Product (Admin Only)
     @PostMapping()
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Product addProduct(@RequestBody Product product) {
@@ -61,6 +64,7 @@ public class ProductsController {
         }
     }
 
+    //Update Product (Admin Only)
     @PutMapping("{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void updateProduct(@PathVariable int id, @RequestBody Product product) {
@@ -71,6 +75,7 @@ public class ProductsController {
         }
     }
 
+    //Delete Product (Admin Only)
     @DeleteMapping("{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteProduct(@PathVariable int id) {
