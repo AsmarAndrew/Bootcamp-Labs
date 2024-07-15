@@ -1,14 +1,45 @@
-package org.example;
+package org.example.screens;
+
+import org.example.handlers.ProfileHandler;
+import org.example.models.Profile;
+import org.example.models.User;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ProfileScreen {
-    public void viewProfile(User user) {
-        ProfileDAO profileDAO = new ProfileDAO();
 
+    private final ProfileHandler profileHandler = new ProfileHandler();
+
+    public void showProfileScreen(User user) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Profile Screen");
+            System.out.println("1) View Profile");
+            System.out.println("2) Update Profile");
+            System.out.println("X) Go Back");
+            System.out.print("Enter your choice: ");
+            String choice = scanner.nextLine().toUpperCase();
+
+            switch (choice) {
+                case "1":
+                    viewProfile(user);
+                    break;
+                case "2":
+                    updateProfile(user, scanner);
+                    break;
+                case "X":
+                    return;
+                default:
+                    System.out.println("Invalid choice, please try again.");
+            }
+        }
+    }
+
+    private void viewProfile(User user) {
         try {
-            Profile profile = profileDAO.getProfileByUserId(user.getUserId());
+            Profile profile = profileHandler.viewProfile(user.getUserId());
 
             if (profile != null) {
                 System.out.println("Profile Information:");
@@ -29,11 +60,9 @@ public class ProfileScreen {
         }
     }
 
-    public void updateProfile(User user, Scanner scanner) {
-        ProfileDAO profileDAO = new ProfileDAO();
-
+    private void updateProfile(User user, Scanner scanner) {
         try {
-            Profile profile = profileDAO.getProfileByUserId(user.getUserId());
+            Profile profile = profileHandler.viewProfile(user.getUserId());
 
             if (profile != null) {
                 System.out.println("Enter new profile information (leave blank to keep current value):");
@@ -69,7 +98,7 @@ public class ProfileScreen {
                 String zip = scanner.nextLine();
                 if (!zip.isEmpty()) profile.setZip(zip);
 
-                profileDAO.updateProfile(profile);
+                profileHandler.updateProfile(profile);
                 System.out.println("Profile updated successfully.");
             } else {
                 System.out.println("Profile not found.");
@@ -79,6 +108,4 @@ public class ProfileScreen {
             e.printStackTrace();
         }
     }
-
-
 }

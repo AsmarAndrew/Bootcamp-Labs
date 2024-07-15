@@ -1,4 +1,7 @@
-package org.example;
+package org.example.dao;
+
+import org.example.data.DatabaseConnection;
+import org.example.models.Profile;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
