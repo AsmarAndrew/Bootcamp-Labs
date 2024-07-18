@@ -39,3 +39,5 @@ build/
 
 ### Ignore database properties ###
 src/main/resources/database.properties
+
+
