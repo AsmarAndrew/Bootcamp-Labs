@@ -26,6 +26,7 @@ public class ReportsScreen {
             System.out.println("↳ x) ɢᴏ ʙᴀᴄᴋ");
             System.out.print("ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ: ");
             String choice = scanner.nextLine().toUpperCase();
+            System.out.println();
 
             switch (choice) {
                 case "1":
@@ -100,6 +101,7 @@ public class ReportsScreen {
         String endDate = scanner.nextLine();
         System.out.print("ᴇɴᴛᴇʀ ᴠᴇɴᴅᴏʀ (ʟᴇᴀᴠᴇ ʙʟᴀɴᴋ ꜰᴏʀ ᴀɴʏ): ");
         String vendor = scanner.nextLine();
+        System.out.println();
 
         try {
             ResultSet rs = reportHandler.customSearch(user.getUserId(), Date.valueOf(startDate), Date.valueOf(endDate), vendor);
@@ -118,6 +120,7 @@ public class ReportsScreen {
             System.out.println("ᴠᴇɴᴅᴏʀ: " + rs.getString("vendor"));
             System.out.println("ᴀᴍᴏᴜɴᴛ: " + rs.getDouble("amount"));
             System.out.println("-----------------------------------");
+            System.out.println();
         }
     }
 }

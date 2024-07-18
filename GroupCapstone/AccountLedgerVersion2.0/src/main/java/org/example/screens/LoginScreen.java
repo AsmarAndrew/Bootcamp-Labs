@@ -18,7 +18,8 @@ public class LoginScreen {
             System.out.println("↳ 2. ᴇxɪᴛ");
             System.out.print("ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ: ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
+            System.out.println();
 
             switch (choice) {
                 case 1:
@@ -26,6 +27,7 @@ public class LoginScreen {
                     String username = scanner.nextLine();
                     System.out.print("ᴘᴀꜱꜱᴡᴏʀᴅ: ");
                     String password = scanner.nextLine();
+                    System.out.println();
 
                     try {
                         User user = userDAO.getUserByUsername(username);

@@ -21,6 +21,7 @@ public class ProfileScreen {
             System.out.println("↳ x) ɢᴏ ʙᴀᴄᴋ");
             System.out.print("ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ: ");
             String choice = scanner.nextLine().toUpperCase();
+            System.out.println();
 
             switch (choice) {
                 case "1":

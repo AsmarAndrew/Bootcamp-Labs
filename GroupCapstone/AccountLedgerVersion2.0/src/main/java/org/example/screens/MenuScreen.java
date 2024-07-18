@@ -15,7 +15,8 @@ public class MenuScreen {
             System.out.println("↳ 3. ʟᴏɢᴏᴜᴛ");
             System.out.print("ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ: ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
+            System.out.println();
 
             switch (choice) {
                 case 1:

@@ -21,7 +21,7 @@ public class HomeScreen {
             System.out.println("↳ x) ɢᴏ ʙᴀᴄᴋ");
             System.out.print("ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ: ");
             String choice = scanner.nextLine().toUpperCase();
-
+            System.out.println();
             switch (choice) {
                 case "1":
                     handleAddDeposit(user, scanner);
@@ -48,7 +48,8 @@ public class HomeScreen {
         String vendor = scanner.nextLine();
         System.out.print("ᴇɴᴛᴇʀ ᴀᴍᴏᴜɴᴛ: ");
         double amount = scanner.nextDouble();
-        scanner.nextLine(); // Consume newline
+        System.out.println();
+        scanner.nextLine();
 
         try {
             transactionHandler.addDeposit(user.getUserId(), description, vendor, amount);
@@ -66,7 +67,8 @@ public class HomeScreen {
         String vendor = scanner.nextLine();
         System.out.print("ᴇɴᴛᴇʀ ᴀᴍᴏᴜɴᴛ: ");
         double amount = scanner.nextDouble();
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine();
+        System.out.println();
 
         try {
             transactionHandler.makePayment(user.getUserId(), description, vendor, amount);
