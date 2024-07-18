@@ -16,15 +16,15 @@ public class ReportsScreen {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Reports Screen");
-            System.out.println("1) Month to Date");
-            System.out.println("2) Previous Month");
-            System.out.println("3) Year to Date");
-            System.out.println("4) Previous Year");
-            System.out.println("5) Search by Vendor");
-            System.out.println("6) Custom Search");
-            System.out.println("X) Go Back");
-            System.out.print("Enter your choice: ");
+            System.out.println("ʀᴇᴘᴏʀᴛꜱ ꜱᴄʀᴇᴇɴ");
+            System.out.println("↳ 1) ᴍᴏɴᴛʜ ᴛᴏ ᴅᴀᴛᴇ");
+            System.out.println("↳ 2) ᴘʀᴇᴠɪᴏᴜꜱ ᴍᴏɴᴛʜ");
+            System.out.println("↳ 3) ʏᴇᴀʀ ᴛᴏ ᴅᴀᴛᴇ");
+            System.out.println("↳ 4) ᴘʀᴇᴠɪᴏᴜꜱ ʏᴇᴀʀ");
+            System.out.println("↳ 5) ꜱᴇᴀʀᴄʜ ʙʏ ᴠᴇɴᴅᴏʀ");
+            System.out.println("↳ 6) ᴄᴜꜱᴛᴏᴍ ꜱᴇᴀʀᴄʜ");
+            System.out.println("↳ x) ɢᴏ ʙᴀᴄᴋ");
+            System.out.print("ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ: ");
             String choice = scanner.nextLine().toUpperCase();
 
             switch (choice) {
@@ -49,7 +49,7 @@ public class ReportsScreen {
                 case "X":
                     return;
                 default:
-                    System.out.println("Invalid choice, please try again.");
+                    System.out.println("ɪɴᴠᴀʟɪᴅ ᴄʜᴏɪᴄᴇ, ᴘʟᴇᴀꜱᴇ ᴛʀʏ ᴀɢᴀɪɴ");
             }
         }
     }
@@ -75,48 +75,48 @@ public class ReportsScreen {
             }
             displayResultSet(rs);
         } catch (SQLException e) {
-            System.out.println("An error occurred while fetching the report.");
+            System.out.println("ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ꜰᴇᴛᴄʜɪɴɢ ᴛʜᴇ ʀᴇᴘᴏʀᴛ");
             e.printStackTrace();
         }
     }
 
     private void searchByVendor(User user, Scanner scanner) {
-        System.out.print("Enter vendor name: ");
+        System.out.print("ᴇɴᴛᴇʀ ᴠᴇɴᴅᴏʀ ɴᴀᴍᴇ: ");
         String vendor = scanner.nextLine();
 
         try {
             ResultSet rs = reportHandler.searchByVendor(user.getUserId(), vendor);
             displayResultSet(rs);
         } catch (SQLException e) {
-            System.out.println("An error occurred while searching by vendor.");
+            System.out.println("ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ꜱᴇᴀʀᴄʜɪɴɢ ʙʏ ᴠᴇɴᴅᴏʀ.");
             e.printStackTrace();
         }
     }
 
     private void customSearch(User user, Scanner scanner) {
-        System.out.print("Enter start date (YYYY-MM-DD): ");
+        System.out.print("ᴇɴᴛᴇʀ ꜱᴛᴀʀᴛ ᴅᴀᴛᴇ (ʏʏʏʏ-ᴍᴍ-ᴅᴅ): ");
         String startDate = scanner.nextLine();
-        System.out.print("Enter end date (YYYY-MM-DD): ");
+        System.out.print("ᴇɴᴛᴇʀ ᴇɴᴅ ᴅᴀᴛᴇ (ʏʏʏʏ-ᴍᴍ-ᴅᴅ): ");
         String endDate = scanner.nextLine();
-        System.out.print("Enter vendor (leave blank for any): ");
+        System.out.print("ᴇɴᴛᴇʀ ᴠᴇɴᴅᴏʀ (ʟᴇᴀᴠᴇ ʙʟᴀɴᴋ ꜰᴏʀ ᴀɴʏ): ");
         String vendor = scanner.nextLine();
 
         try {
             ResultSet rs = reportHandler.customSearch(user.getUserId(), Date.valueOf(startDate), Date.valueOf(endDate), vendor);
             displayResultSet(rs);
         } catch (SQLException e) {
-            System.out.println("An error occurred while performing the custom search.");
+            System.out.println("ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ᴘᴇʀꜰᴏʀᴍɪɴɢ ᴛʜᴇ ᴄᴜꜱᴛᴏᴍ ꜱᴇᴀʀᴄʜ.");
             e.printStackTrace();
         }
     }
 
     private void displayResultSet(ResultSet rs) throws SQLException {
         while (rs.next()) {
-            System.out.println("Transaction ID: " + rs.getInt("transaction_id"));
-            System.out.println("Date: " + rs.getTimestamp("date"));
-            System.out.println("Description: " + rs.getString("description"));
-            System.out.println("Vendor: " + rs.getString("vendor"));
-            System.out.println("Amount: " + rs.getDouble("amount"));
+            System.out.println("ᴛʀᴀɴꜱᴀᴄᴛɪᴏɴ ɪᴅ: " + rs.getInt("transaction_id"));
+            System.out.println("ᴅᴀᴛᴇ: " + rs.getTimestamp("date"));
+            System.out.println("ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ: " + rs.getString("description"));
+            System.out.println("ᴠᴇɴᴅᴏʀ: " + rs.getString("vendor"));
+            System.out.println("ᴀᴍᴏᴜɴᴛ: " + rs.getDouble("amount"));
             System.out.println("-----------------------------------");
         }
     }

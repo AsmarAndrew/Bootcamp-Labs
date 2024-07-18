@@ -14,12 +14,12 @@ public class HomeScreen {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Home Screen");
-            System.out.println("1) Add Deposit");
-            System.out.println("2) Make Payment");
-            System.out.println("3) Ledger");
-            System.out.println("X) Go Back");
-            System.out.print("Enter your choice: ");
+            System.out.println("ʜᴏᴍᴇ ꜱᴄʀᴇᴇɴ");
+            System.out.println("↳ 1) ᴀᴅᴅ ᴅᴇᴘᴏꜱɪᴛ");
+            System.out.println("↳ 2) ᴍᴀᴋᴇ ᴘᴀʏᴍᴇɴᴛ");
+            System.out.println("↳ 3) ʟᴇᴅɢᴇʀ");
+            System.out.println("↳ x) ɢᴏ ʙᴀᴄᴋ");
+            System.out.print("ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ: ");
             String choice = scanner.nextLine().toUpperCase();
 
             switch (choice) {
@@ -36,43 +36,43 @@ public class HomeScreen {
                 case "X":
                     return;
                 default:
-                    System.out.println("Invalid choice, please try again.");
+                    System.out.println("ɪɴᴠᴀʟɪᴅ ᴄʜᴏɪᴄᴇ, ᴘʟᴇᴀꜱᴇ ᴛʀʏ ᴀɢᴀɪɴ.");
             }
         }
     }
 
     private void handleAddDeposit(User user, Scanner scanner) {
-        System.out.print("Enter description: ");
+        System.out.print("ᴇɴᴛᴇʀ ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ: ");
         String description = scanner.nextLine();
-        System.out.print("Enter vendor: ");
+        System.out.print("ᴇɴᴛᴇʀ ᴠᴇɴᴅᴏʀ: ");
         String vendor = scanner.nextLine();
-        System.out.print("Enter amount: ");
+        System.out.print("ᴇɴᴛᴇʀ ᴀᴍᴏᴜɴᴛ: ");
         double amount = scanner.nextDouble();
         scanner.nextLine(); // Consume newline
 
         try {
             transactionHandler.addDeposit(user.getUserId(), description, vendor, amount);
-            System.out.println("Deposit added successfully.");
+            System.out.println("ᴅᴇᴘᴏꜱɪᴛ ᴀᴅᴅᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ.");
         } catch (SQLException e) {
-            System.out.println("An error occurred while adding the deposit.");
+            System.out.println("ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ᴀᴅᴅɪɴɢ ᴛʜᴇ ᴅᴇᴘᴏꜱɪᴛ.");
             e.printStackTrace();
         }
     }
 
     private void handleMakePayment(User user, Scanner scanner) {
-        System.out.print("Enter description: ");
+        System.out.print("ᴇɴᴛᴇʀ ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ: ");
         String description = scanner.nextLine();
-        System.out.print("Enter vendor: ");
+        System.out.print("ᴇɴᴛᴇʀ ᴠᴇɴᴅᴏʀ: ");
         String vendor = scanner.nextLine();
-        System.out.print("Enter amount: ");
+        System.out.print("ᴇɴᴛᴇʀ ᴀᴍᴏᴜɴᴛ: ");
         double amount = scanner.nextDouble();
         scanner.nextLine(); // Consume newline
 
         try {
             transactionHandler.makePayment(user.getUserId(), description, vendor, amount);
-            System.out.println("Payment made successfully.");
+            System.out.println("ᴘᴀʏᴍᴇɴᴛ ᴍᴀᴅᴇ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ.");
         } catch (SQLException e) {
-            System.out.println("An error occurred while making the payment.");
+            System.out.println("ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ᴍᴀᴋɪɴɢ ᴛʜᴇ ᴘᴀʏᴍᴇɴᴛ.");
             e.printStackTrace();
         }
     }

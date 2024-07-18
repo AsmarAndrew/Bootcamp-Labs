@@ -15,11 +15,11 @@ public class ProfileScreen {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Profile Screen");
-            System.out.println("1) View Profile");
-            System.out.println("2) Update Profile");
-            System.out.println("X) Go Back");
-            System.out.print("Enter your choice: ");
+            System.out.println("ᴘʀᴏꜰɪʟᴇ ꜱᴄʀᴇᴇɴ");
+            System.out.println("↳ 1) ᴠɪᴇᴡ ᴘʀᴏꜰɪʟᴇ");
+            System.out.println("↳ 2) ᴜᴘᴅᴀᴛᴇ ᴘʀᴏꜰɪʟᴇ");
+            System.out.println("↳ x) ɢᴏ ʙᴀᴄᴋ");
+            System.out.print("ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ: ");
             String choice = scanner.nextLine().toUpperCase();
 
             switch (choice) {
@@ -42,20 +42,20 @@ public class ProfileScreen {
             Profile profile = profileHandler.viewProfile(user.getUserId());
 
             if (profile != null) {
-                System.out.println("Profile Information:");
-                System.out.println("First Name: " + profile.getFirstName());
-                System.out.println("Last Name: " + profile.getLastName());
-                System.out.println("Phone: " + profile.getPhone());
-                System.out.println("Email: " + profile.getEmail());
-                System.out.println("Address: " + profile.getAddress());
-                System.out.println("City: " + profile.getCity());
-                System.out.println("State: " + profile.getState());
-                System.out.println("ZIP: " + profile.getZip());
+                System.out.println("ᴘʀᴏꜰɪʟᴇ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ:");
+                System.out.println("ꜰɪʀꜱᴛ ɴᴀᴍᴇ: " + profile.getFirstName());
+                System.out.println("ʟᴀꜱᴛ ɴᴀᴍᴇ: " + profile.getLastName());
+                System.out.println("ᴘʜᴏɴᴇ: " + profile.getPhone());
+                System.out.println("ᴇᴍᴀɪʟ: " + profile.getEmail());
+                System.out.println("ᴀᴅᴅʀᴇꜱꜱ: " + profile.getAddress());
+                System.out.println("ᴄɪᴛʏ: " + profile.getCity());
+                System.out.println("ꜱᴛᴀᴛᴇ: " + profile.getState());
+                System.out.println("ᴢɪᴘ: " + profile.getZip());
             } else {
-                System.out.println("Profile not found.");
+                System.out.println("ᴘʀᴏꜰɪʟᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ.");
             }
         } catch (SQLException e) {
-            System.out.println("An error occurred while fetching the profile.");
+            System.out.println("ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ꜰᴇᴛᴄʜɪɴɢ ᴛʜᴇ ᴘʀᴏꜰɪʟᴇ.");
             e.printStackTrace();
         }
     }
@@ -65,46 +65,46 @@ public class ProfileScreen {
             Profile profile = profileHandler.viewProfile(user.getUserId());
 
             if (profile != null) {
-                System.out.println("Enter new profile information (leave blank to keep current value):");
-                System.out.print("First Name [" + profile.getFirstName() + "]: ");
+                System.out.println("ᴇɴᴛᴇʀ ɴᴇᴡ ᴘʀᴏꜰɪʟᴇ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ (ʟᴇᴀᴠᴇ ʙʟᴀɴᴋ ᴛᴏ ᴋᴇᴇᴘ ᴄᴜʀʀᴇɴᴛ ᴠᴀʟᴜᴇ.):");
+                System.out.print("ꜰɪʀꜱᴛ ɴᴀᴍᴇ [" + profile.getFirstName() + "]: ");
                 String firstName = scanner.nextLine();
                 if (!firstName.isEmpty()) profile.setFirstName(firstName);
 
-                System.out.print("Last Name [" + profile.getLastName() + "]: ");
+                System.out.print("ʟᴀꜱᴛ ɴᴀᴍᴇ [" + profile.getLastName() + "]: ");
                 String lastName = scanner.nextLine();
                 if (!lastName.isEmpty()) profile.setLastName(lastName);
 
-                System.out.print("Phone [" + profile.getPhone() + "]: ");
+                System.out.print("ᴘʜᴏɴᴇ [" + profile.getPhone() + "]: ");
                 String phone = scanner.nextLine();
                 if (!phone.isEmpty()) profile.setPhone(phone);
 
-                System.out.print("Email [" + profile.getEmail() + "]: ");
+                System.out.print("ᴇᴍᴀɪʟ [" + profile.getEmail() + "]: ");
                 String email = scanner.nextLine();
                 if (!email.isEmpty()) profile.setEmail(email);
 
-                System.out.print("Address [" + profile.getAddress() + "]: ");
+                System.out.print("ᴀᴅᴅʀᴇꜱꜱ [" + profile.getAddress() + "]: ");
                 String address = scanner.nextLine();
                 if (!address.isEmpty()) profile.setAddress(address);
 
-                System.out.print("City [" + profile.getCity() + "]: ");
+                System.out.print("ᴄɪᴛʏ [" + profile.getCity() + "]: ");
                 String city = scanner.nextLine();
                 if (!city.isEmpty()) profile.setCity(city);
 
-                System.out.print("State [" + profile.getState() + "]: ");
+                System.out.print("ꜱᴛᴀᴛᴇ [" + profile.getState() + "]: ");
                 String state = scanner.nextLine();
                 if (!state.isEmpty()) profile.setState(state);
 
-                System.out.print("ZIP [" + profile.getZip() + "]: ");
+                System.out.print("ᴢɪᴘ [" + profile.getZip() + "]: ");
                 String zip = scanner.nextLine();
                 if (!zip.isEmpty()) profile.setZip(zip);
 
                 profileHandler.updateProfile(profile);
-                System.out.println("Profile updated successfully.");
+                System.out.println("ᴘʀᴏꜰɪʟᴇ ᴜᴘᴅᴀᴛᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ.");
             } else {
-                System.out.println("Profile not found.");
+                System.out.println("ᴘʀᴏꜰɪʟᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ.");
             }
         } catch (SQLException e) {
-            System.out.println("An error occurred while updating the profile.");
+            System.out.println("ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀᴇᴅ ᴡʜɪʟᴇ ᴜᴘᴅᴀᴛɪɴɢ ᴛʜᴇ ᴘʀᴏꜰɪʟᴇ.");
             e.printStackTrace();
         }
     }

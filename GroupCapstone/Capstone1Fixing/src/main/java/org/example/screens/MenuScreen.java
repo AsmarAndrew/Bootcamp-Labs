@@ -9,11 +9,11 @@ public class MenuScreen {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Welcome, " + user.getUsername());
-            System.out.println("1. Profile");
-            System.out.println("2. Home Screen");
-            System.out.println("3. Logout");
-            System.out.print("Enter your choice: ");
+            System.out.println("ᴡᴇʟᴄᴏᴍᴇ, " + user.getUsername());
+            System.out.println("↳ 1. ᴘʀᴏꜰɪʟᴇ");
+            System.out.println("↳ 2. ʜᴏᴍᴇ ꜱᴄʀᴇᴇɴ");
+            System.out.println("↳ 3. ʟᴏɢᴏᴜᴛ");
+            System.out.print("ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
@@ -27,10 +27,10 @@ public class MenuScreen {
                     homeScreen.showHomeScreen(user);
                     break;
                 case 3:
-                    System.out.println("Logging out...");
+                    System.out.println("ʟᴏɢɢɪɴɢ ᴏᴜᴛ...");
                     return;
                 default:
-                    System.out.println("Invalid choice, please try again.");
+                    System.out.println("ɪɴᴠᴀʟɪᴅ ᴄʜᴏɪᴄᴇ, ᴘʟᴇᴀꜱᴇ ᴛʀʏ ᴀɢᴀɪɴ.");
             }
         }
     }

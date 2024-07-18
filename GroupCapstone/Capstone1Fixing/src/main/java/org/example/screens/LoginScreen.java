@@ -13,39 +13,39 @@ public class LoginScreen {
         UserDAO userDAO = new UserDAO();
 
         while (true) {
-            System.out.println("Login Screen");
-            System.out.println("1. Login");
-            System.out.println("2. Exit");
-            System.out.print("Enter your choice: ");
+            System.out.println("ʟᴏɢɪɴ ꜱᴄʀᴇᴇɴ");
+            System.out.println("↳ 1. ʟᴏɢɪɴ");
+            System.out.println("↳ 2. ᴇxɪᴛ");
+            System.out.print("ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
             switch (choice) {
                 case 1:
-                    System.out.print("Username: ");
+                    System.out.print("ᴜꜱᴇʀɴᴀᴍᴇ: ");
                     String username = scanner.nextLine();
-                    System.out.print("Password: ");
+                    System.out.print("ᴘᴀꜱꜱᴡᴏʀᴅ: ");
                     String password = scanner.nextLine();
 
                     try {
                         User user = userDAO.getUserByUsername(username);
                         if (user != null && user.getPassword().equals(password)) {
-                            System.out.println("Login successful!");
+                            System.out.println("ʟᴏɢɪɴ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟ!");
                             MenuScreen menuScreen = new MenuScreen();
                             menuScreen.showMenu(user);
                         } else {
-                            System.out.println("Invalid username or password, please try again.");
+                            System.out.println("ɪɴᴠʟᴀɪᴅ ᴜꜱᴇʀɴᴀᴍᴇ ᴏʀ ᴘᴀꜱꜱᴡᴏʀᴅ, ᴘʟᴇᴀꜱᴇ ᴛʀʏ ᴀɢᴀɪɴ.");
                         }
                     } catch (SQLException e) {
-                        System.out.println("An error occurred while logging in.");
+                        System.out.println("ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ʟᴏɢɢɪɴɢ ɪɴ.");
                         e.printStackTrace();
                     }
                     break;
                 case 2:
-                    System.out.println("Exiting...");
+                    System.out.println("ᴇxɪᴛɪɴɢ...");
                     return;
                 default:
-                    System.out.println("Invalid choice, please try again.");
+                    System.out.println("ɪɴᴠᴀʟɪᴅ ᴄʜᴏɪᴄᴇ, ᴘʟᴇᴀꜱᴇ ᴛʀʏ ᴀɢᴀɪɴ.");
             }
         }
     }

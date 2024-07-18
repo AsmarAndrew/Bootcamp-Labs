@@ -15,13 +15,13 @@ public class LedgerScreen {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Ledger Screen");
-            System.out.println("1) All - Display all Entries");
-            System.out.println("2) Deposits - Display only deposits");
-            System.out.println("3) Payments - Display only payments");
-            System.out.println("4) Reports");
-            System.out.println("X) Go Back");
-            System.out.print("Enter your choice: ");
+            System.out.println("ʟᴇᴅɢᴇʀ ꜱᴄʀᴇᴇɴ");
+            System.out.println("↳ 1) ᴀʟʟ - ᴅɪꜱᴘʟᴀʏ ᴀʟʟ ᴇɴᴛʀɪᴇꜱ");
+            System.out.println("↳ 2) ᴅᴇᴘᴏꜱɪᴛꜱ - ᴅɪꜱᴘʟᴀʏ ᴏɴʟʏ ᴅᴇᴘᴏꜱɪᴛꜱ");
+            System.out.println("↳ 3) ᴘᴀʏᴍᴇɴᴛꜱ - ᴅɪꜱᴘʟᴀʏ ᴏɴʟʏ ᴘᴀʏᴍᴇɴᴛꜱ");
+            System.out.println("↳ 4) ʀᴇᴘᴏʀᴛꜱ");
+            System.out.println("↳ x) ɢᴏ ʙᴀᴄᴋ");
+            System.out.print("ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ: ");
             String choice = scanner.nextLine().toUpperCase();
 
             switch (choice) {
@@ -41,7 +41,7 @@ public class LedgerScreen {
                 case "X":
                     return;
                 default:
-                    System.out.println("Invalid choice, please try again.");
+                    System.out.println("ɪɴᴠᴀʟɪᴅ ᴄʜᴏɪᴄᴇ, ᴘʟᴇᴀꜱᴇ ᴛʀʏ ᴀɢᴀɪɴ.");
             }
         }
     }
@@ -51,7 +51,7 @@ public class LedgerScreen {
             ResultSet rs = ledgerHandler.showAllLedgers(user.getUserId());
             displayResultSet(rs);
         } catch (SQLException e) {
-            System.out.println("An error occurred while fetching transactions.");
+            System.out.println("ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ꜰᴇᴛᴄʜɪɴɢ ᴛʀᴀɴꜱᴀᴄᴛɪᴏɴꜱ.");
             e.printStackTrace();
         }
     }
@@ -71,18 +71,18 @@ public class LedgerScreen {
             ResultSet rs = ledgerHandler.showAllPayments(user.getUserId());
             displayResultSet(rs);
         } catch (SQLException e) {
-            System.out.println("An error occurred while fetching payments.");
+            System.out.println("ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ꜰᴇᴛᴄʜɪɴɢ ᴅᴇᴘᴏꜱɪᴛꜱ.");
             e.printStackTrace();
         }
     }
 
     private void displayResultSet(ResultSet rs) throws SQLException {
         while (rs.next()) {
-            System.out.println("Transaction ID: " + rs.getInt("transaction_id"));
-            System.out.println("Date: " + rs.getTimestamp("date"));
-            System.out.println("Description: " + rs.getString("description"));
-            System.out.println("Vendor: " + rs.getString("vendor"));
-            System.out.println("Amount: " + rs.getDouble("amount"));
+            System.out.println("ᴛʀᴀɴꜱᴀᴄᴛɪᴏɴ ɪᴅ: " + rs.getInt("transaction_id"));
+            System.out.println("ᴅᴀᴛᴇ: " + rs.getTimestamp("date"));
+            System.out.println("ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ: " + rs.getString("description"));
+            System.out.println("ᴠᴇɴᴅᴏʀ: " + rs.getString("vendor"));
+            System.out.println("ᴀᴍᴏᴜɴᴛ: " + rs.getDouble("amount"));
             System.out.println("-----------------------------------");
         }
     }
